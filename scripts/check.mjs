@@ -25,7 +25,7 @@ for (const asset of manifest.assetTree) {
   total += bytes.length;
 }
 assert.equal(total, manifest.counts.extractedAssetBytes);
-for (const file of ['src/main.js', 'src/prototypeSurface.js', 'src/generated/initializePrototype.js', 'src/generated/markup.js', 'scripts/serve.mjs', 'scripts/build.mjs', 'scripts/base-path.mjs']) {
+for (const file of ['src/main.js', 'src/moduleLoader.js', 'src/prototypeSurface.js', 'src/generated/initializePrototype.js', 'src/generated/markup.js', 'scripts/serve.mjs', 'scripts/build.mjs', 'scripts/base-path.mjs']) {
   const result = spawnSync(process.execPath, ['--check', resolve(root, file)], { encoding: 'utf8' });
   assert.equal(result.status, 0, `${file}: ${result.stderr}`);
 }

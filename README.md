@@ -36,6 +36,10 @@ npm run preview
 
 `build` 校验原始脚本、DOM 模块及全部素材的 SHA-256，检查 JavaScript 语法，然后生成 `dist/`。`preview` 提供构建产物预览；如开发服务仍在运行，使用 `npm run preview -- --port 5301`。
 
+生产构建会将启动程序预压缩并拆成不超过 256 KiB 的下载块，并合并小型启动脚本以减少串行请求。页面显示下载进度，每块失败时最多尝试 3 次；单次请求 20 秒超时，整体下载 90 秒超时后提供“重新打开”。每块和解压后的程序均验证 SHA-256。支持 DecompressionStream 的浏览器使用分块下载，其他浏览器保留标准 ES 模块加载；原始脚本和冻结的预览程序不进行压缩改写。此处的预压缩仅指 gzip 传输压缩。
+
+可运行 `npm test` 验证分块重组、部分下载中断、损坏数据、超时和取消。GitHub Actions 在构建前也会执行这组测试。网络仍需能访问 GitHub Pages，本项目不内置第三方镜像。
+
 将 **dist 目录中的全部内容** 上传到静态服务器。默认构建适用于站点根目录；若部署到 `/studio/` 子目录，使用 `npm run build -- --base /studio/`。构建只在 dist 副本中调整素材地址，原始源码与散列清单保持不变。`npm run preview` 自动读取本次构建的路径，并打印正确的预览地址。
 
 无需在服务器上运行 `npm start`，也无需 API 反向代理、登录服务或 SPA 路由回退。服务器应将 `.js` 作为 JavaScript 提供，并允许原型的内联样式与 sandbox iframe 脚本。
@@ -71,6 +75,7 @@ GitHub Free 可使用公开仓库的 Pages，私有仓库是否支持取决于�
 ```text
 index.html                   独立页面入口
 src/main.js                  页面挂载与静态展示模式
+src/moduleLoader.js          带进度、校验、超时与重试的启动下载器
 src/shell.css                独立加载界面
 src/prototypeSurface.js      原生 DOM / 事件 / 预览适配层
 src/generated/               原型脚本、DOM、来源清单与冻结的子页面程序
@@ -78,6 +83,7 @@ creator-prototype/assets/    全量本地素材
 scripts/serve.mjs            零依赖静态文件服务
 scripts/check.mjs            来源完整性与语法校验
 scripts/build.mjs            输出可直接托管的 dist
+scripts/moduleLoader.test.mjs 下载器回归测试
 docs/creator-prototype-comparison.md  上游功能对照文档（保留原记录，非本次验收结果）
 provenance.json              抽离来源
 ```

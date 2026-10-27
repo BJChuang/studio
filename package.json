@@ -9,6 +9,7 @@
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "check": "node scripts/check.mjs",
+    "test": "node --test scripts/moduleLoader.test.mjs",
     "build": "node scripts/check.mjs && node scripts/build.mjs",
     "preview": "node scripts/serve.mjs --dir dist"
   }

@@ -1,0 +1,15 @@
+{
+  "name": "peachland-studio-static",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "桃花岛创作台独立静态展示版，无框架、无后端依赖。",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/check.mjs && node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs --dir dist"
+  }
+}

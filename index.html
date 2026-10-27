@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="桃花岛创作台独立静态展示：模板、内容编辑、画布、素材、变量、事件与实时预览。">
+    <title>桃花岛创作台</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="stylesheet" href="./src/shell.css">
+  </head>
+  <body>
+    <main id="studio" aria-label="桃花岛创作台"></main>
+    <div id="loading" role="status" aria-live="polite">
+      <span class="flower" aria-hidden="true">✿</span>
+      <h1>桃花岛创作台</h1>
+      <p id="loading-message">正在准备创作界面…</p>
+      <button id="retry" type="button" hidden>重新打开</button>
+    </div>
+    <noscript>创作台需要启用 JavaScript，请开启后刷新页面。</noscript>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

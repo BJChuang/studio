@@ -1,0 +1,8 @@
+{
+  "sourceRepository": "https://github.com/gilgamesh6/taohuadao",
+  "sourceBranch": "codex/creation-studio-dev",
+  "sourceCommit": "04bab526008720c84d23e1a4f3d5c82fa232d1f0",
+  "sourceDirectory": "peachland-mainline/src/features/creator/prototype",
+  "extractedAt": "2026-10-27",
+  "notes": "Standalone static host; original runtime, markup, frame programs, source manifest and media are preserved. Vue mount is replaced by src/main.js."
+}
